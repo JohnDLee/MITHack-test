@@ -1,6 +1,8 @@
 
 import jsonmap from './map.json' assert {type: 'json'};
 
+console.log('hello world');
+
 
 AFRAME.registerComponent('rotation-reader',{
     tick: function () {
@@ -9,11 +11,16 @@ AFRAME.registerComponent('rotation-reader',{
         // `rotation` is a three.js Euler using radians. `quaternion` also available.
         let rot = this.el.object3D.rotation;
         // `position` is a three.js Vector3.
+        
         let xyz = this.el.object3D.position;
+        console.log(xyz.x);
         let pos = document.getElementById("box").getAttribute("position");
-        console.log(Math.round(xyz.x));
-        if (xyz.x < jsonmap.length || xyz.x > 0)
-            document.getElementById('box').setAttribute('src', jsonmap[Math.round(xyz.x)])
+        if (xyz.x < jsonmap.length && xyz.x > 0) {
+            document.getElementById('box').setAttribute('src', jsonmap[Math.round(xyz.x)]);
+        }
+        //console.log(rot._x);
+        
+        //document.getElementById('box').setAttribute('position', `-.1 1 ${xyz.z - 3}`)
         //console.log(pos);
     }
 });
