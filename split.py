@@ -7,6 +7,7 @@ def getFrame(sec, count, i):
     hasFrames,image = vidcap.read()
     if hasFrames:
         image = cv2.pyrDown(image)
+        image = cv2.copyMakeBorder(image, 32, 32, 242, 242, borderType=cv2.BORDER_CONSTANT, value = 0)
         cv2.imwrite(os.path.join(test, "%06d"%count+".png"), image)     # save frame as JPG file
     return hasFrames
 sec = 0
